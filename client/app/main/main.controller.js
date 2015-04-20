@@ -15,7 +15,6 @@ angular.module('mShopApp')
     var slides = $scope.slides = [];
     $scope.addSlide = function(obj) {
       var newWidth = 600 + slides.length + 1;
-      console.log(obj.description);
       slides.push({
         image: obj.images[0].url.http,
         height: '100px',
@@ -24,7 +23,6 @@ angular.module('mShopApp')
       });
     };
     for (var i=0; i<$scope.mainCategories.length; i++) {
-      console.log(i);
       $scope.addSlide($scope.mainCategories[i]);
     }
 

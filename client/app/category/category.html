@@ -1,4 +1,29 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="col-md-12">
-This is the category view.
+
+<div class="container">
+  <div class="col-md-2">
+    <br>
+    <h4>Filter</h4>
+    <p>Put filters here.</p>
+
+
+  </div>
+  <div class="col-sm-10">
+    <h3>{{category.title}}</h3>
+    <div class="row">
+      <div class="col-md-3" ng-repeat="prod in products | orderBy: 'price'">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>{{prod.title}}</p>
+            <strong>{{prod.pricing.formatted.with_tax}}</strong>
+            <img ng-src="{{prod.images[0].url.http}}" alt="Description" class="img-responsive">
+          </div>
+          <div class="panel-footer" style="height:60px;">
+            <div ng-bind-html="prod.description"></div>    
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>

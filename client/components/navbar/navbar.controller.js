@@ -2,14 +2,25 @@
 
 angular.module('mShopApp')
   .controller('NavbarCtrl', function ($scope, $location,$q,$modal, Auth,MoltinAuth) {
-    $scope.menu = [
-      {'title': 'Home','link': '/'},
-      {'title': 'Women','link': '/women'},
-      {'title': 'Children','link': '/category'},
-    ];
+
+    $scope.moltin = MoltinAuth;
+    $scope.getTree = function(category,cb){
+      MoltinAuth.then(function(moltin){
+        console.log('moltin',category.id);
+        moltin.Category.Tree({parent:category.id},function(tree){
+          cb(tree);
+
+        });
+      });
+
+    };
+
 
     $scope.openModal = function(category){
-      $scope.open('lg');
+      //$scope.getTree(category,function(tree){
+        //console.log('tree',tree);
+      //});
+      $scope.open(category);
     };
 
   $scope.extraDlgClass = undefined;
@@ -20,14 +31,17 @@ angular.module('mShopApp')
   $scope.maxHeight = undefined;
   $scope.minWidth = undefined;
   $scope.minHeight = undefined;
+  var opened = false;
 
+  $scope.open = function (category) {
 
-  $scope.open = function (size) {
+    if(opened){return}
 
     var modalInstance = $modal.open({
       templateUrl: 'components/navbar/navmodal.html',
       controller: 'NavModalCtrl',
       windowClass: 'app-modal-window',
+      backdrop: false,
       /*extraDlgClass: $scope.extraDlgClass,
 
       width: $scope.width,
@@ -39,19 +53,31 @@ angular.module('mShopApp')
       resolve: {
         items: function () {
           return $scope.items;
-        }
+        },
+
+          tree: function($q,MoltinAuth){
+            var deferred = $q.defer();
+            $q.when(MoltinAuth).then(function(moltin){
+              moltin.Category.Tree(null,function(tree){
+                deferred.resolve(tree);
+              });
+            })
+            return deferred.promise;
+          }
       }
     });
-
+    opened=true;
     modalInstance.result.then(function (selectedItem) {
       $scope.selected = selectedItem;
+      opened = false;
     }, function () {
+      opened = false;
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
 
 
-    console.log($scope.menu);
+
     var getMainCategories = function(){
       var deferred = $q.defer();
       $q.when(MoltinAuth).then(function(moltin){

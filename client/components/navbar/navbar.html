@@ -13,7 +13,7 @@
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
         <li ng-repeat="item in menu" ng-class="{active: isActive(item.slug)}">
-            <a ng-click="openModal(item.slug)" ng-href="{{item.id}}">{{item.title}}</a>
+            <a ng-mouseenter="openModal(item)" ng-href="{{item.id}}">{{item.title}}</a>
         </li>
         <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
       </ul>
