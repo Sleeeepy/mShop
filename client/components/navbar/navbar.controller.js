@@ -40,7 +40,7 @@ angular.module('mShopApp')
     var modalInstance = $modal.open({
       templateUrl: 'components/navbar/navmodal.html',
       controller: 'NavModalCtrl',
-      windowClass: 'app-modal-window',
+      windowClass: 'modal-nav',//'app-modal-window',
       backdrop: false,
       /*extraDlgClass: $scope.extraDlgClass,
 

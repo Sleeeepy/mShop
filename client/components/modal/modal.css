@@ -21,3 +21,13 @@
 .modal-danger .modal-header {
   background: #d9534f;
 }
+
+.modal-nav .modal-dialog  {
+  width: 90%;
+}
+
+.modal-product .modal-dialog  {
+  width: 60%;
+  height: 60%;
+  top:20%;
+}

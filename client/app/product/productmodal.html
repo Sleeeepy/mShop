@@ -1,0 +1,38 @@
+
+<div class="container" style="color:grey;">
+  <div class="row">
+
+
+  <div class="col-md-3">
+    <img class="img-responsive" ng-src="{{product.images[0].url.http}}" alt="Description" />
+  </div>
+  <div class="col-md-3">
+    <br>
+    <p class="text-muted">
+      {{product.brand.value}}
+    </p>
+    {{product.title}} <br>
+    <small>T3240989{{product.SKU}}</small> <br>
+    <p class="text-right">
+      <strong >{{product.pricing.formatted.with_tax}}</strong>
+    </p>
+
+
+    <ol class="list-group" style="float: bottom;">
+      <li  class="list-group-item">
+        1. Pick Colour
+      </li>
+      <li  class="list-group-item">
+        2. Select Size
+      </li>
+      <li  class="list-group-item">
+        3.
+        <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">
+          Add to basket
+        </button>
+      </li>
+    </ol>
+
+  </div>
+</div>
+</div>
