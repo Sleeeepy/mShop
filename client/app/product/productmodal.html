@@ -12,7 +12,7 @@
       {{product.brand.value}}
     </p>
     {{product.title}} <br>
-    <small>T3240989{{product.SKU}}</small> <br>
+    <small>{{product.sku}}</small> <br>
     <p class="text-right">
       <strong >{{product.pricing.formatted.with_tax}}</strong>
     </p>
@@ -26,10 +26,12 @@
         2. Select Size
       </li>
       <li  class="list-group-item">
-        3.
-        <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">
-          Add to basket
+        3. Add to basket <br>
+        <p class="text-center">
+        <button ng-click="addCart()" type="button" class="btn btn-success btn-sm" aria-label="add to cart">
+           <span class="glyphicon glyphicon-shopping-cart"></span>
         </button>
+        </p>
       </li>
     </ol>
 

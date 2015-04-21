@@ -53,4 +53,11 @@ angular.module('mShopApp', [
         }
       });
     });
+  }).run(function(MoltinAuth, $rootScope) {
+    MoltinAuth.then(function(moltin) {
+      moltin.Cart.Contents(function(items) {
+        $rootScope.cart = items;
+        $rootScope.$apply();
+      });
+    });
   });
