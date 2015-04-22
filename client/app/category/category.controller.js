@@ -5,7 +5,6 @@ angular.module('mShopApp')
 
     $scope.category = category;
     $scope.products = products;
-    console.log(products[0]);
 
     $scope.sortOptions = [{
                             label:'NEW ARRIVALS',

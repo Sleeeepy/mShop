@@ -1,12 +1,16 @@
 'use strict';
 
 angular.module('mShopApp')
-  .controller('NavbarCtrl', function ($scope, $location,$q,$modal, Auth,MoltinAuth) {
+  .controller('NavbarCtrl', function ($scope, $location,$q,$modal, Auth,MoltinAuth,Modal) {
 
     $scope.moltin = MoltinAuth;
+    /*
+    $scope.$watch($scope.moltin.Cart.Contents,function(){
+      alter('from navctrl');
+      $scope.cart = $scope.moltin.Cart.Contents();
+    });*/
     $scope.getTree = function(category,cb){
       MoltinAuth.then(function(moltin){
-        console.log('moltin',category.id);
         moltin.Category.Tree({parent:category.id},function(tree){
           cb(tree);
 
@@ -20,17 +24,14 @@ angular.module('mShopApp')
       //$scope.getTree(category,function(tree){
         //console.log('tree',tree);
       //});
-      $scope.open(category);
+      console.log(Modal);
+      $scope.modal = Modal.confirm.delete('asdf');
+      console.log|($scope.modal('asdf2'));
+      //$scope.open(category);
     };
 
-  $scope.extraDlgClass = undefined;
 
-  $scope.width = "100%";
-  $scope.height = "200px";
-  $scope.maxWidth = undefined;
-  $scope.maxHeight = undefined;
-  $scope.minWidth = undefined;
-  $scope.minHeight = undefined;
+
   var opened = false;
 
   $scope.open = function (category) {
@@ -42,19 +43,7 @@ angular.module('mShopApp')
       controller: 'NavModalCtrl',
       windowClass: 'modal-nav',//'app-modal-window',
       backdrop: false,
-      /*extraDlgClass: $scope.extraDlgClass,
-
-      width: $scope.width,
-      height: $scope.height,
-      maxWidth: $scope.maxWidth,
-      maxHeight: $scope.maxHeight,
-      minWidth: $scope.minWidth,
-      minHeight: $scope.minHeight,*/
       resolve: {
-        items: function () {
-          return $scope.items;
-        },
-
           tree: function($q,MoltinAuth){
             var deferred = $q.defer();
             $q.when(MoltinAuth).then(function(moltin){

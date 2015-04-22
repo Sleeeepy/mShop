@@ -9,9 +9,10 @@ angular.module('mShopApp')
      * @return {Object}            - the instance $modal.open() returns
      */
     function openModal(scope, modalClass) {
+
       var modalScope = $rootScope.$new();
       scope = scope || {};
-      modalClass = modalClass || 'modal-default';
+      modalClass = modalClass || 'components/modal/modal.css';
 
       angular.extend(modalScope, scope);
 

@@ -17,9 +17,8 @@ angular.module('mShopApp')
       var newWidth = 600 + slides.length + 1;
       slides.push({
         image: obj.images[0].url.http,
-        height: '100px',
-        text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-          ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+        //height: '100px',
+        text: obj.title
       });
     };
     for (var i=0; i<$scope.mainCategories.length; i++) {
