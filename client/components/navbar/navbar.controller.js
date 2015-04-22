@@ -25,9 +25,9 @@ angular.module('mShopApp')
         //console.log('tree',tree);
       //});
       console.log(Modal);
-      $scope.modal = Modal.confirm.delete('asdf');
-      console.log|($scope.modal('asdf2'));
-      //$scope.open(category);
+      //$scope.modal = Modal.confirm.delete('asdf');
+      //console.log|($scope.modal('asdf2'));
+      $scope.open(category);
     };
 
 

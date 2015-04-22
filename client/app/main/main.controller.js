@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mShopApp')
-  .controller('MainCtrl', function ($scope, $http, socket,categories) {
+  .controller('MainCtrl', function ($scope, $http,categories) { //, socket
     $scope.awesomeThings = [];
     $scope.mainCategories = [];
     categories.forEach(function(item){
