@@ -452,7 +452,7 @@ module.exports = function (grunt) {
 
     injector: {
       options: {
-
+        lineEnding: grunt.util.linefeed
       },
       // Inject application script files into index.html (doesn't include bower)
       scripts: {
@@ -463,7 +463,7 @@ module.exports = function (grunt) {
             return '<script src="' + filePath + '"></script>';
           },
           starttag: '<!-- injector:js -->',
-          endtag: '<!-- endinjector -->'
+          endtag: '<!-- endinjector -->',
         },
         files: {
           '<%= yeoman.client %>/index.html': [
