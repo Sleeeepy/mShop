@@ -13,10 +13,17 @@
     </carousel>
   </div>
 </div>
-<<<<<<< HEAD
+<form action="http://localhost:9000/api/images" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="name" value="halloween">
+      <input type="hidden" name="description" value="puking pumpkins">
+      <!-- Include any additional input fields here -->
 
-=======
->>>>>>> 03071535f5c811c2f17f778858aec5ecff7256cb
+      File to upload to S3:
+      <input name="image" type="file">
+      <br>
+      <input type="submit" value="Upload File to S3">
+</form>
+
 <!--
   <div class="row">
     <div class="col-lg-12">
