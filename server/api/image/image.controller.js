@@ -25,26 +25,32 @@ exports.show = function(req, res) {
 
 // Creates a new image in the DB.
 exports.create = function(req, res) {
-  var pathnew='c:\\gmtest2.jpg'
-  gm('C:\\pattern.png')
-  .resize(40,40,'%')
-  .composite('C:\\Sphere.png')
-  .displace(25,25)
+  var pathnew=__dirname+'\\result.png',
+      pattern =__dirname+'\\pattern.png',
+      item = __dirname+'\\tshirt.png';
+      console.log(item,pattern);
+  if(!fs.readFileSync(pattern)){console.log('pattern missing');}
+  if(!fs.readFileSync(item)){console.log('item missing');}
 
-  .write('c:\\result.png',function(err){
-    gm('c:\\Sphere.png')
-    .composite('C:\\result.png')
+
+    gm(pattern)
+  .composite(item)
+  .displace(30,30)
+  //.mask(item)
+  .write(pathnew,function(err){
+    gm(pattern)
+    .composite(pathnew)
+    .mask(item)
     .compose('Multiply')
-    .blur(9)
-
-    .write('c:\\result.jpg',function(err){
+    .write(pathnew,function(err){
 
         if(err){console.log('gm err: ',err)}
-        var img = fs.readFileSync('c:\\result.jpg');
-        res.writeHead(200, {'Content-Type': 'image/jpg' });
+        var img = fs.readFileSync(pathnew);
+        res.writeHead(200, {'Content-Type': 'image/png' });
         res.end(img, 'binary');
 
     });
+
 
   });
   //req.files.image.path
