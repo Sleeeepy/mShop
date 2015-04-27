@@ -3,6 +3,9 @@
 var _ = require('lodash');
 var Image = require('./image.model');
 
+var gm = require('gm');
+var fs = require('fs');
+
 // Get list of images
 exports.index = function(req, res) {
   Image.find(function (err, images) {
@@ -22,10 +25,49 @@ exports.show = function(req, res) {
 
 // Creates a new image in the DB.
 exports.create = function(req, res) {
+  var pathnew='c:\\gmtest2.jpg'
+  gm('C:\\pattern.png')
+  .resize(40,40,'%')
+  .composite('C:\\Sphere.png')
+  .displace(25,25)
+
+  .write('c:\\result.png',function(err){
+    gm('c:\\Sphere.png')
+    .composite('C:\\result.png')
+    .compose('Multiply')
+    .blur(9)
+
+    .write('c:\\result.jpg',function(err){
+
+        if(err){console.log('gm err: ',err)}
+        var img = fs.readFileSync('c:\\result.jpg');
+        res.writeHead(200, {'Content-Type': 'image/jpg' });
+        res.end(img, 'binary');
+
+    });
+
+  });
+  //req.files.image.path
+  //gm('c:\\pattern.png').resize(30, 30, '%')
+  //.region(130, 170, 307, 0).charcoal(2)
+  //.region(132, 172, 207, 234).charcoal(2)
+  //.region(200, 300, 0, 0).solarize(0.4)
+  //.minify()
+  //.composite('C:\\whiteshirt.jpg').contrast(4)
+  //.displace(50,50)
+
+
+  /*  .write(pathnew,function(err){
+      if(err){console.log('gm err: ',err)}
+      var img = fs.readFileSync(pathnew);
+      res.writeHead(200, {'Content-Type': 'image/jpg' });
+      res.end(img, 'binary');
+    });*/
+    /*
   Image.create({path:req.files.image.path}, function(err, image) {
     if(err) { return handleError(res, err); }
     return res.json(201, image);
-  });
+  });*/
 };
 
 // Updates an existing image in the DB.
